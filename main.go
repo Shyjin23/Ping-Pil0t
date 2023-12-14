@@ -9,14 +9,14 @@ import (
      "github.com/urfave/cli/v2"
 )
 
-// Server Implementation
+// Initiate Server 
 func PingPil0tServer(c *cli.Context) error {
   iface := c.String("iface") 
   C2.StartServer(iface) 
   return nil
 }
 
-// Client Implementation
+// Initiate Client 
 func PingPil0tClient(c *cli.Context) error {
   iface := c.String("iface") 
   chunkSize, _ := strconv.Atoi(c.String("chunkSize")) 
@@ -69,3 +69,4 @@ func main() {
     panic(err)
   }
 }
+

@@ -1,5 +1,7 @@
 package handlers
 
+// Client Implementation
+
 import (
   "os"
   "fmt"
@@ -13,6 +15,7 @@ import (
   "golang.org/x/net/ipv4"
 )
 
+// func to handle echo replies for client 
 func sendEchoReply(conn *icmp.PacketConn, peer string, pkt *icmp.Echo, chunkSize int) {
  var ( 
    res []byte 
@@ -31,7 +34,6 @@ func sendEchoReply(conn *icmp.PacketConn, peer string, pkt *icmp.Echo, chunkSize
    return
  }
 
- // fmt.Println(cmd, len(cmd), string(res))
  for from := 0; from < len(res); from += chunkSize {
    to := from + chunkSize
    if to > len(res) {
@@ -64,6 +66,7 @@ func sendEchoReply(conn *icmp.PacketConn, peer string, pkt *icmp.Echo, chunkSize
    fmt.Println("[+] Successfully sent icmp echo reply!") 
 }
 
+// func to handle echo requests from server
 func handleEchoRequest(conn *icmp.PacketConn, chunkSize int) {
   buffer := make([]byte, 1024)
 
@@ -82,7 +85,7 @@ func handleEchoRequest(conn *icmp.PacketConn, chunkSize int) {
 
     switch msg.Type {
     case ipv4.ICMPTypeEcho:
-      fmt.Println("[+] Received icmp echo request from", peer.String()) // , string(msg.Body.(*icmp.Echo).Data))
+      fmt.Println("[+] Received icmp echo request from", peer.String()) 
       sendEchoReply(conn, peer.String(), msg.Body.(*icmp.Echo), chunkSize)
     default:
       continue 
@@ -90,11 +93,11 @@ func handleEchoRequest(conn *icmp.PacketConn, chunkSize int) {
   }
 }
 
+// func to handle client specific actions  
 func StartClient(iface string, chunkSize int) {
- fmt.Print("[+] Resolving IP")
- ifaceAddr := utils.ResolveInterfaceIP(iface)
 
  fmt.Print("\n[+] Starting client")
+ ifaceAddr := utils.ResolveInterfaceIP(iface)
  
  conn, err := icmp.ListenPacket("ip4:icmp", ifaceAddr)
  if err != nil {
@@ -115,3 +118,4 @@ func StartClient(iface string, chunkSize int) {
  
  handleEchoRequest(conn, chunkSize)
 }
+

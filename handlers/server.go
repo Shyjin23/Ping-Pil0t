@@ -1,5 +1,7 @@
 package handlers 
 
+// Server Implementation 
+
 import (
   "os"
   "fmt"
@@ -16,6 +18,7 @@ const (
   icmpProtocol = 1
 )
 
+// func to handle icmp echo replies from client 
 func handleEchoReply(conn *icmp.PacketConn) {
   buffer := make([]byte, 1024)
 
@@ -34,13 +37,14 @@ func handleEchoReply(conn *icmp.PacketConn) {
 
     switch msg.Type {
     case ipv4.ICMPTypeEchoReply:
-      fmt.Println(string(msg.Body.(*icmp.Echo).Data)) // "[+] Received icmp echo reply from", peer.String(), string(msg.Body.(*icmp.Echo).Data))
+      fmt.Println(string(msg.Body.(*icmp.Echo).Data)) 
     default:
       continue 
     }
   } 
 }
 
+// func to handle icmp echo requests for server
 func sendEchoRequest(conn *icmp.PacketConn, ifaceAddr string, cmd string) {
   msg := icmp.Message {
     Type: ipv4.ICMPTypeEcho, 
@@ -63,16 +67,13 @@ func sendEchoRequest(conn *icmp.PacketConn, ifaceAddr string, cmd string) {
     log.Println("[!] Error marshaling ICMP echo request:", err)
     return
   }
-
-  // fmt.Println("[+] Successfully sent icmp echo request!")
 }
 
+// func to handle server specific actions  
 func StartServer(iface string) {
  
- fmt.Print("[+] Resolving IP")
- ifaceAddr := utils.ResolveInterfaceIP(iface)
- 
  fmt.Print("\n[+] Starting server")
+ ifaceAddr := utils.ResolveInterfaceIP(iface)
  
  conn, err := icmp.ListenPacket("ip4:icmp", ifaceAddr)
  if err != nil {
@@ -95,13 +96,9 @@ func StartServer(iface string) {
 
  go handleEchoReply(conn)
  
- // sendEchoRequest(conn, ifaceAddr, "@hello client!")
-
  scanner := bufio.NewScanner(os.Stdin)
 
  for {
-   // fmt.Print(">> ")
-
    if scanner.Scan() {
      cmd := scanner.Text()
      sendEchoRequest(conn, ifaceAddr, cmd)

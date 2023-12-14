@@ -6,6 +6,7 @@ import (
   "strings"
 )
 
+// func to resolve interface name to ip addr
 func ResolveInterfaceIP(iface string) (ifaceAddr string) {
   iFace, err := net.InterfaceByName(iface)
   if err != nil {
@@ -16,7 +17,6 @@ func ResolveInterfaceIP(iface string) (ifaceAddr string) {
     fmt.Println(err)
   }
   ifaceAddr = strings.Split(addr[0].String(), "/")[0]
-  fmt.Printf(" => (%s)  0k!", ifaceAddr)
   return ifaceAddr
 }
 
