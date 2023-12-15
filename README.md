@@ -1,37 +1,40 @@
 
 &rarr; Ping-Pil0t
-: An simple Command and Control (C2) tool that leverages the ICMP protocol for communication, implemented in GoLang.
+: A simple Command and Control (C2) framework that leverages the ICMP protocol for communication, implemented in GoLang.
 
 ---
 
-##Features :
+## ***Features***:
 
 - **ICMP Communication:** Uses ICMP echo requests and replies for covert communication.
- 
+
 - **Simple and Lightweight:** Designed to be minimalistic and easy to use.
 
 - **Command Execution:** Allows remote execution of commands on target systems.
 ---
 
-##Usage :
+## ***Usage***:
 
- **Build:**
+$~$ **Build**:
+
 ```
 go build -o pingpil0t main.go
 ```
 
- **Run Server:**
+$~$ **Initiate Server**:
+
 ```
 ./pingpilot server --iface <interface_name>
 ```
 
- **Run Client:**
+$~$ **Run Client**:
+
 ```
 ./pingpilot client ---iface <interface_name> --size <chunk_size>
 ```
 
 ---
 
-##Disclaimer :
+## ***Disclaimer***:
 
 This tool is intended for educational and research purposes only. Use it responsibly and only on systems you own.
