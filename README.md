@@ -1,6 +1,6 @@
 
 &rarr; Ping-Pil0t \
-* A simple Command and Control (C2) framework that leverages the ICMP protocol for communication, implemented in GoLang.
+A simple Command and Control (C2) framework that leverages the ICMP protocol for communication, implemented in GoLang.
 
 ---
 
