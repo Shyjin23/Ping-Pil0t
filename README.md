@@ -1,6 +1,5 @@
 
 &rarr; Ping-Pil0t
-
 : An simple Command and Control (C2) tool that leverages the ICMP protocol for communication, implemented in GoLang.
 
 ---
@@ -16,17 +15,17 @@
 
 ## Usage :
 
- **Build:**
+   **Build:**
 ```
 go build -o pingpil0t main.go
 ```
 
-**Run Server:**
+  **Run Server:**
 ```
 ./pingpilot server --iface <interface_name>
 ```
 
-**Run Client:**
+  **Run Client:**
 ```
 ./pingpilot client ---iface <interface_name> --size <chunk_size>
 ```
