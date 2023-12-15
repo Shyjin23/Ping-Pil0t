@@ -15,19 +15,19 @@
 
 ## **Usage** :
 
-$~$ **Build**:
+&nbsp;**Build**:
 
 ```
 go build -o pingpil0t main.go
 ```
 
-$~$ **Initiate Server**:
+&nbsp;**Initiate Server** :
 
 ```
 ./pingpilot server --iface <interface_name>
 ```
 
-$~$ **Run Client**:
+&nbsp;**Run Client** :
 
 ```
 ./pingpilot client ---iface <interface_name> --size <chunk_size>
