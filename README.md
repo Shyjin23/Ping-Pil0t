@@ -10,8 +10,6 @@ A simple Command and Control (C2) framework that leverages the ICMP protocol for
 - **ICMP Communication:** Uses ICMP echo requests and replies for covert communication.
 
 - **Simple and Lightweight:** Designed to be minimalistic and easy to use.
-
-- **Command Execution:** Allows remote execution of commands on target systems.
 ---
 
 ## **Usage** :
