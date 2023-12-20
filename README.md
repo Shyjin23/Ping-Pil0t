@@ -36,4 +36,4 @@ go build -o pingpil0t main.go
 
 ## **Disclaimer** :
 
-This tool is intended for educational and research purposes only. Use it responsibly and only on systems you own.
+This tool is intended for educational and research purposes only.
